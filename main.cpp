@@ -1,24 +1,38 @@
 #include <iostream>
+using namespace std;
 #include "bank.h"
 // Banking system
 
 /* Bank Class
     has many users
-    balance
+    get getAccBalance
+    deposit & withdraw money into user given accNumber
+
+*/
+
+/* User Class
+    userName
+    accountNumber
     deposit
     withdraw
 */
 
-/* User Class
-    user can have to multiple bank accounts
-    can check balance for a bank account
-    account balances needs to be up to date
-*/
-
 int main()
 {
-    std::cout << "Welcome to the Bank-A!" << std::endl;
-    auto bank = Bank("Chase");
-    bank.addUser("John");
+    cout << "Welcome to Banking!" << endl;
+    auto bank = Bank("Chasing");
+    cout << "You are banking with " << bank.name << endl;
+    cout << "Current users:" << endl;
+    bank.addSampleUser("John");
+    bank.addUser("Mike");
+    bank.addUser("Sarah");
     bank.getAllUsers();
+    cout << "Testing with one user" << endl;
+    const string sampleAccNum = "111111111";
+    User* user =  bank.getUserAcc(sampleAccNum);
+    cout << "Depositing: $100 to John" << endl;
+    user->deposit(100);
+    cout << "User: " << user->userName << " has balance: $" << user->balance << endl;
+
+
 }

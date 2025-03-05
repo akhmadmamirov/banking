@@ -12,12 +12,13 @@ using namespace std;
 class Bank
 {
 private:
-    std::map<string, User*> users;
-
+    map<string, User*> users;
 public:
     string name;
     explicit Bank(const string& bankName);
     void addUser(const string& userName);
+    void addSampleUser(const string& userName);
+    User* getUserAcc(const string& accNum);
     void getAllUsers();
 };
 #endif //BANK_H

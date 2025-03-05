@@ -27,21 +27,40 @@ string getRandomNum()
     return to_string(randomNumber);
 }
 
-void Bank::addUser(const string& userName)
+void Bank::addSampleUser(const string& userName)
 {
-    /*
-     * TO DO: check if random user already exists
-    */
-    const string newAccNum = getRandomNum();
+    const string newAccNum = "111111111";
     const auto newUser = new User(userName, newAccNum);
     users[newAccNum] = newUser;
 }
+
+
+void Bank::addUser(const string& userName)
+{
+    string newAccNum = getRandomNum();
+    while (users.contains(newAccNum))
+    {
+        newAccNum = getRandomNum();
+    }
+    const auto newUser = new User(userName, newAccNum);
+    users[newAccNum] = newUser;
+}
+
+User* Bank::getUserAcc(const string& accNum)
+{
+    if (const auto it = users.find(accNum); it != users.end())
+    {
+        return it->second;
+    }
+    return nullptr;
+}
+
 
 void Bank::getAllUsers()
 {
     for (auto & [fst, snd]: users)
     {
-        std::cout << fst << " " << snd->userName << std::endl;
+        cout << fst << " " << snd->userName << endl;
     }
 }
 
